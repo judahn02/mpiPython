@@ -16,3 +16,8 @@ We need to also look at how much of the function features to be implemented in C
 
 ### Jinu,
 Once I get the test script running, then I would like you to make the MPI_Get_processor_name() function. Look at how C first does it in the mpi_example code, then look at how Python needs to be set up in order to run the function by looking at the source code. I will try to edit the code to be more clear to follow. 
+
+### Things to pay attention to!
+
+I don't think we will need to deal with this issue but Python integers do not have a limit.
+The Python datatype is significantly different than the C type and might become a possible issue of limits.
