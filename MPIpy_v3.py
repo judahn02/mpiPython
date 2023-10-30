@@ -77,6 +77,9 @@ class MPIpy:
             CT.c_int, CT.c_int, CT.c_void_p
         ]
 
+        self.__get_processor_name = MPIpy.c_code.mpi_get_processor_name
+        self.__get_processor_name.argtypes = [CT.c_void_p]
+
         self.__finalize = MPIpy.c_code.MPI_Finalize
 
         MPIpy.c_code.MPI_Init()
@@ -84,6 +87,13 @@ class MPIpy:
         self.size = self.sizef()
         self.sizeS = self.size - 1 # when main is not considered a worker.
         atexit.register(self.__finalize)
+
+    def Get_processor_name(self, comm = cworld) -> str:
+        """Get the name of the processor."""
+        name = CT.create_string_buffer(256)
+        self.__get_processor_name(CT.pointer(self.temp_P))
+        test2 = (CT.c_char * 256).from_address(self.temp_P.value) # switched to c_char
+        return test2.value  # changed to test2.value
 
     def rankf(self, comm = cworld) -> int:
         """Rank of the individual node."""

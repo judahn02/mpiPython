@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include "mpi.h"
 /* to compile:
- * $ mpicc compile_this_v3.c -shared -fPIC -o compiled_v3.so
+ * $ mpicc 'comp_MPIpy.c' -shared -fPIC -o comp_MPIpy.so
  * If the line above does not work, try this one:
- * $ mpicc.mpich compile_this_v3.c -shared -fPIC -o compiled_v3.so
+ * $ mpicc.mpich 'comp_MPIpy.c' -shared -fPIC -o comp_MPIpy.so
+ * Exteded by Jaden Jinu Lee
  * Put together by Judah Nava and Elkana Munganga
 */
 
@@ -29,6 +30,7 @@ void mpi_scatter(const void* sendbuf, int sendcount, int datatypeKey,
                        void* recvbuf, int recvcount, int root, int comm);
 int  barrier(int comm);
 void matmul_double(double* MA, double* MB, int rowA, int shareB, int colC, double** LC);
+void mpi_get_processor_name(char ** name);
 
 
 int communicator()
@@ -167,4 +169,12 @@ void matmul_double(double* MA, double* MB, int rowA, int shareB, int colC, doubl
         }
     }
     *LC = tmpLC;
+}
+
+void mpi_get_processor_name(char ** name)
+{
+    int len = 256;
+	char* namev = (char*) malloc((len) * sizeof(char));
+    MPI_Get_processor_name(namev, &len); //added the & - Judah
+	*name = namev ;
 }

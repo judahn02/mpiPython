@@ -3,8 +3,8 @@ from time import perf_counter as clock
 from sys import argv
 import MPIpy_v3
 MPI = MPIpy_v3.MPIpy()
-# !! side length has to be wual or bigger than node count minus one.
-# to run: $mpirun -np 3 python3 ./multi_node.py 4
+# !! side length has to be equal or bigger than node count minus one.
+# to run: $mpirun.mpich -np 3 python3 ./MPIpy_test.py 4
 
 def myWork(side: int, size: int, rank:int):
     temp = [0 for a in range(size)]
@@ -69,3 +69,4 @@ else:
                 list_the[a * side + b] += list_one_part[a * side + c] * list_two[c * side + b]
     #print("from node {:d}: ".format(MPI.rank), list_the)
     MPI.send_double_array(list_the, 0, MPI.rank)
+print(MPI.Get_processor_name())

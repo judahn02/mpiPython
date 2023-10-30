@@ -6,8 +6,9 @@ The files above are what were used for the first paper. I will work on developin
 	- can compile C code and libraries
 
 ## What to do
-- Implement MPI_Get_processor_name() function. 
-- Implement MPI_Gather() function.
+- <s>Implement MPI_Get_processor_name() function.</s> (Done)
+- Implement MPI_Gather() function. -> mpi_bandwith -> lines 52 and 61
+- Implement MPI_Get_count() -> mpi_ping -> line 39
 - Remove the need to separate Python Integer-based commands and Python Double-based commands
 - Implement all features of MPI_Reduce()
 I wrote the order of objectives from top to bottom implying the difficulty of easiest at top and most difficult at bottom.
