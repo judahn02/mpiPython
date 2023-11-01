@@ -7,7 +7,7 @@ The files above are what were used for the first paper. I will work on developin
 
 ## What to do
 - <s>Implement MPI_Get_processor_name() function.</s> (Done)
-- Implement MPI_Gather() function. -> mpi_bandwith -> lines 52 and 61
+- <s>Implement MPI_Gather() function. -> mpi_bandwith -> lines 52 and 61 </s> (Done)
 - Implement MPI_Get_count() -> mpi_ping -> line 39
 - Remove the need to separate Python Integer-based commands and Python Double-based commands
 - Implement all features of MPI_Reduce()
