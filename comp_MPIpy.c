@@ -2,10 +2,9 @@
 #include <stdio.h>
 #include "mpi.h"
 /* to compile:
- * $ mpicc 'comp_MPIpy.c' -shared -fPIC -o comp_MPIpy.so
+ * $ mpicc 'comp_MPIpy copy.c' -shared -fPIC -o comp_MPIpy.so
  * If the line above does not work, try this one:
  * $ mpicc.mpich 'comp_MPIpy.c' -shared -fPIC -o comp_MPIpy.so
- * Exteded by Jaden Jinu Lee
  * Put together by Judah Nava and Elkana Munganga
 */
 
@@ -28,10 +27,10 @@ void mpi_Bcast_int(int* buffer, int count, int root, int comm);
 void mpi_Bcast_double(double* buffer, int count, int root, int comm);
 void mpi_scatter(const void* sendbuf, int sendcount, int datatypeKey, 
                        void* recvbuf, int recvcount, int root, int comm);
+void mpi_gather_s(void* sendbuf, int count, int datatypeKey, void** recvbuf, int root, int comm) ;
 int  barrier(int comm);
 void matmul_double(double* MA, double* MB, int rowA, int shareB, int colC, double** LC);
 void mpi_get_processor_name(char ** name);
-
 
 int communicator()
 {
@@ -139,6 +138,37 @@ void mpi_scatter(const void* sendbuf, int sendcount, int datatypeKey, void* recv
 		data = MPI_DOUBLE;
 	}
 	MPI_Scatter(sendbuf, sendcount, data, recvbuf, recvcount, data, root, comm);
+}
+
+	
+//Needed to switch to super pointer for
+void mpi_gather_s(void* sendbuf, int count, int datatypeKey, void** recvbuf, int root, int comm)
+{
+	MPI_Datatype data;
+	void *recv = NULL;
+	int tcp ;
+	MPI_Comm_size((MPI_Comm) comm, &tcp) ;
+	if (datatypeKey == 1)
+	{
+		data = MPI_INT;
+		recv = malloc(sizeof(long) * count * tcp) ; //! Be causious
+		
+	}
+	else if (datatypeKey == 2)
+	{
+		data = MPI_DOUBLE;
+		recv = malloc(sizeof(double) * count * tcp) ;
+		
+	}
+
+	MPI_Gather(sendbuf, count, data, recv, count, data, root, comm);
+	// int tmp;
+	// MPI_Comm_rank(comm, &tmp) ;
+	// if (tmp == 0)
+	// {
+
+	// }
+	*recvbuf = recv ;
 }
 
 int barrier(int comm)

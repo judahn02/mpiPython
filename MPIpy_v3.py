@@ -64,6 +64,9 @@ class MPIpy:
         self.__scatter = MPIpy.c_code.mpi_scatter
         self.__scatter.argtypes = [CT.c_void_p, CT.c_int, CT.c_int, CT.c_void_p, CT.c_int, CT.c_int, CT.c_int]
 
+        self.__gather = MPIpy.c_code.mpi_gather_s
+        self.__gather.argtypes = [CT.c_void_p, CT.c_int, CT.c_int, CT.c_void_p, CT.c_int, CT.c_int]
+
         self.__barrier = MPIpy.c_code.barrier
         self.__barrier.argtypes = [CT.c_int]
         self.__barrier.restype = CT.c_int
@@ -87,13 +90,6 @@ class MPIpy:
         self.size = self.sizef()
         self.sizeS = self.size - 1 # when main is not considered a worker.
         atexit.register(self.__finalize)
-
-    def Get_processor_name(self, comm = cworld) -> str:
-        """Get the name of the processor."""
-        name = CT.create_string_buffer(256)
-        self.__get_processor_name(CT.pointer(self.temp_P))
-        test2 = (CT.c_char * 256).from_address(self.temp_P.value) # switched to c_char
-        return test2.value  # changed to test2.value
 
     def rankf(self, comm = cworld) -> int:
         """Rank of the individual node."""
@@ -265,10 +261,47 @@ class MPIpy:
             for i in range(lengthS):
                 dataList.append(temp.contents[i])
 
-    def barrier(self, comm_m = cworld) -> None:
-        """MPI_Barrier"""        
-        self.__barrier(comm_m)
+    def gather(self, dataList: list, sender, comm_m = cworld) -> None:
+        """MPI_Gather for MPIpy."""
 
+        lengthS = len(dataList)
+
+        if type(dataList[0]) == int:
+            sType = 1
+            temp_ar = lengthS * CT.c_int
+            temp = temp_ar()
+            for i in range(lengthS):
+                temp[i] = dataList[i]
+
+        elif type(dataList[0]) == float:
+            sType = 2
+            temp_ar = lengthS * CT.c_double
+            temp = temp_ar()
+            for i in range(lengthS):
+                temp[i] = dataList[i]
+
+        self.__gather(CT.pointer(temp), lengthS, sType, CT.pointer(self.temp_P), sender, comm_m)
+
+        dataList.clear()
+        if self.rank == sender:
+            if sType == 1: # int
+                tmp2 = (CT.c_int * (lengthS * self.size))
+                tmp2 = tmp2.from_address(self.temp_P.value)
+                dataList.extend(tmp2[::]) 
+        
+        self.__super_free(CT.pointer(self.temp_P))
+
+    def Get_processor_name(self, comm = cworld) -> str:
+        """Get the name of the processor."""
+        # name = CT.create_string_buffer(256)
+        self.__get_processor_name(CT.pointer(self.temp_P))
+        test2 = (CT.c_char * 256).from_address(self.temp_P.value) # switched to c_char
+        self.__super_free(CT.pointer(self.temp_P))
+        return test2.value  # changed to test2.value
+
+    def barrier(self, comm_m = cworld) -> None:
+            """MPI_Barrier"""        
+            self.__barrier(comm_m)
     def matmulC(self, LA: list, LB: list, rowA: int, shareB: int, colC: int, LC: list) -> None:
         """Uses a simple matrix algorithm but in c... so its allot faster.
             LA[rowA][shareB]
