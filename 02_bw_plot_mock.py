@@ -2,26 +2,15 @@ import matplotlib.pyplot as plt
 import MPIpy_v3
 MPI = MPIpy_v3.MPIpy()
 
-def onehalf(xmin, xmax,pixel_density):
-    re = [xmin + i * (xmax - xmin) / (int((xmax - xmin) * pixel_density) - 1) for i in range(int((xmax - xmin) * pixel_density))]
+def onehalf(xmin, xmax,pixel_density, chunk):
+    tmp = (xmax - xmin) / (chunk - 1)
+    re = [xmin + i * tmp for i in range(chunk)]
+    #re = [xmin + i * (xmax - xmin) / (int((xmax - xmin) * pixel_density) - 1) for i in range(int((xmax - xmin) * pixel_density))]
     return re
 def secondhalf(half, ymin, ymax, pixel_density):
     im = [ymin + j * (ymax - ymin) / (int((ymax - ymin) * pixel_density) - 1) for j in range(int((ymax - ymin) * pixel_density))]
     complex_matrix = []
     for r in half:
-        row = []
-        for i in im:
-            row.append(r + i * 1j)
-        complex_matrix.append(row)
-    
-    return complex_matrix
-
-def complex_matrix(xmin, xmax, ymin, ymax, pixel_density):
-    re = [xmin + i * (xmax - xmin) / (int((xmax - xmin) * pixel_density) - 1) for i in range(int((xmax - xmin) * pixel_density))]
-    im = [ymin + j * (ymax - ymin) / (int((ymax - ymin) * pixel_density) - 1) for j in range(int((ymax - ymin) * pixel_density))]
-    
-    complex_matrix = []
-    for r in re:
         row = []
         for i in im:
             row.append(r + i * 1j)
@@ -57,10 +46,11 @@ if __name__ == "__main__":
     if density % MPI.size != 0:
         print("improper combination of size and pixel_density")
         exit(1)
-    chunk = int((0.5 - (-2)) * density) // MPI.size
+    chunT = int((0.5 - (-2)) * density)
+    # chunk = int((0.5 - (-2)) * density) // MPI.size
     #c = complex_matrix(-2,0.5,-1.5,1.5, pixel_density=2048)
     if MPI.rank == 0:
-        store = onehalf(-2,0.5, pixel_density=density)
+        store = onehalf(-2,0.5, density, chunT)
         # print(store)
         #print("master: ",len(store))
     else:
@@ -79,7 +69,7 @@ if __name__ == "__main__":
     for i in store:
         master.extend(i)
     MPI.barrier()
-    print(MPI.rank, ": ", len(master))
+    #print(MPI.rank, ": ", len(master))
 
     MPI.gather(master, 0) # it brings it back as a 1D
 

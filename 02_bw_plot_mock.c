@@ -1,3 +1,4 @@
+#include "mpi.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -7,137 +8,61 @@
 #include <stdbool.h>
 #include <png.h>
 
-//typedef uint8_t bool; 
+double * onehalf(double xmin, double xmax, int density, int chunkT);
 
-void is_stable(double complex**, int, int, int);
-void bool2D_png(double complex **test, int rangex, int rangey, png_bytepp *rows) ;
+int main(int argc, char *argv[])
+{
+    int group, rank;
+    MPI_Init(&argc, &argv) ;
+    MPI_Comm_size(MPI_COMM_WORLD, &group) ;
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank) ;
 
-int main() {
-
+    int density = 3072;
+            
     double  xmin = -2,
             xmax = 0.5,
             ymin = -1.5,
-            ymax = 1.5,
-            pixel_dencity = 3072;
-    int     rangex = (int)((xmax - xmin) * pixel_dencity),
-            rangey = (int)((ymax - ymin) * pixel_dencity) ;
-    double  row[rangex],
-            col[rangey] ;
-    for (int i = 0; i < rangex; i++)
-        row[i] = xmin + i * (xmax-xmin)/(rangex-1) ;
-    for (int j = 0; j < rangey; j++)
-        col[j] = ymin + j * (ymax-ymin)/(rangey-1) ;
-    
-    double complex **c = (double complex **) malloc(rangex * sizeof(complex double *)) ;
+            ymax = 1.5;
 
-    for (int i = 0; i < rangex; i++)
+    if (density % group != 0)
     {
-        c[i] = (double complex *) malloc(sizeof(complex double) * rangey) ;
+        printf("error: density 00 group \n ") ;
+        exit(1) ;
     }
-    for (int i = 0; i < rangex; i++) {
-        for (int j = 0; j < rangey; j++) {
-            c[i][j] = row[i] + col[j] * I;  
-        }
-    }
-
-
-    is_stable(c, rangex, rangey, 20);
-
-
-    FILE *fp = fopen("TestRes.png", "wb") ; 
-    if (!fp) return 1 ;
-
-    png_structp png = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL) ;
-    if (!png) {fclose(fp);  return 1;}
-
-    png_infop info = png_create_info_struct(png) ;
-    if (!info) {png_destroy_info_struct(png, NULL);  fclose(fp);  return 1;}
-
-    if (setjmp(png_jmpbuf(png))) abort();
-
-    png_init_io(png, fp) ;
-
-    png_set_IHDR(
-            png, 
-            info, 
-            rangey, 
-            rangex, 
-            8, 
-            PNG_COLOR_TYPE_GRAY, 
-            PNG_INTERLACE_NONE, 
-            PNG_COMPRESSION_TYPE_DEFAULT, 
-            PNG_FILTER_TYPE_DEFAULT
-            );
     
-    png_bytepp rows = (png_bytep*)malloc(sizeof(png_bytep) * rangex) ;
-    for (int i = 0; i < rangex; i++)
+    int chunkT = (int)((0.5 - (-2)) * density);
+    int chunk_partial = (int)(chunkT / group) ;
+    if (chunkT % group != 0)
     {
-        rows[i] = (png_byte*)malloc(sizeof(png_byte) * rangey) ;
+        printf("error: chunkT 00 group \n ") ;
+        exit(1) ;
     }
-    bool2D_png(c, rangex, rangey, &rows) ;
-    png_write_info(png, info) ;
-    
 
-    png_write_image(png, rows);
-    png_write_end(png, NULL) ;
-    png_destroy_write_struct(&png, &info) ;
-    fclose(fp) ;
-
-
-    for (int i = 0; i < rangex; i++) {
-        free(c[i]);
-        free(rows[i]);
+    double * store = NULL;
+    if (rank == 0)
+    {
+        store = onehalf(xmin, xmax, density, chunkT) ;
     }
-    free(c);
-    free(rows);
+
+    double * storeP = (double *) malloc(sizeof(double) * chunk_partial) ;
+
+    MPI_Scatter(&store[0], chunk_partial, MPI_DOUBLE, storeP, chunk_partial,MPI_DOUBLE,0, MPI_COMM_WORLD) ;
+    printf("rank: %d, firstVal= %02f, lastVal= %02f.\n",rank, storeP[0], storeP[chunk_partial-1]) ;
 
 
-    return 0;
+    free(store) ;
+    free(storeP) ;
+    MPI_Finalize() ;
+    return 0 ;
 }
 
-void is_stable(double complex **test, int rangex, int rangey, int itter)
-{   
-    for (int ignore = 0; ignore < itter; ignore++)
-    {
-        for(int i = 0; i < rangex; i++)
-        {
-            for (int j = 0; j < rangey; j++)
-            {
-                if ((isinf(cimag(test[i][j]))) || (isinf(creal(test[i][j])))) continue ;
-                test[i][j] = cpow(test[i][j], 2) + test[i][j] ;
-            }
-        }
-    }
-}
-
-void bool2D_png(double complex **test, int rangex, int rangey, png_bytepp *rows)
+double * onehalf(double xmin, double xmax, int density, int chunkT)
 {
-    uint8_t white = 255;
-    uint8_t black = 0; 
-    for(int i = 0; i < rangex; i++)
+    double tmp = (xmax - xmin) / (double)(chunkT-1) ;
+    double *tmp2 = (double*) malloc(sizeof(double) * chunkT) ;
+    for (int i = 0; i < chunkT; i++)
     {
-        for (int j = 0; j < rangey; j++)
-        {
-            if ((isinf(cimag(test[i][j]))) || (isinf(creal(test[i][j])))) 
-            {
-                (*rows)[i][j] = (png_byte) white ; 
-                continue;
-            }
-            else if (cabs(test[i][j]) <= 2) 
-                (*rows)[i][j] = (png_byte) black ;
-            else
-                (*rows)[i][j] = (png_byte) white ;
-            //(*rows)[i][j] = (png_byte) 255 ;
-        }
+        tmp2[i] = xmin + i * tmp ;
     }
-}
-
-void printGrid(bool **test, int rows, int cols) 
-{
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            printf("%d\t", (int)test[i][j]);
-        }
-        printf("\n");
-    }
+    return &tmp2[0] ;
 }

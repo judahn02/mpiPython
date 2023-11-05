@@ -26,7 +26,6 @@ def is_stable(test: list[list[complex]]) ->list[list[complex]]:
                 test[rowI][colI] = test[rowI][colI]
     return test
 
-
 def bool2D(test):
     for rowI in range(len(test)):
         for colI in range(len(test[rowI])):
@@ -40,7 +39,8 @@ def bool2D(test):
     return test
             
 if __name__ == "__main__":
-    c = complex_matrix(-2,0.5,-1.5,1.5, pixel_density=3072)
+    #368, 3072
+    c = complex_matrix(-2,0.5,-1.5,1.5, pixel_density=368)
     
     for i in range(20):
         c = is_stable(c)
@@ -49,6 +49,6 @@ if __name__ == "__main__":
     plt.gca().set_aspect("equal")
     plt.axis("off")
     plt.tight_layout()
-    plt.savefig('test_fractalO.png')
+    plt.savefig('test_fractalO.png', compression=6)
     #plt.show()
     plt.close()
