@@ -8,7 +8,9 @@ def onehalf(xmin, xmax,pixel_density, chunk):
     #re = [xmin + i * (xmax - xmin) / (int((xmax - xmin) * pixel_density) - 1) for i in range(int((xmax - xmin) * pixel_density))]
     return re
 def secondhalf(half, ymin, ymax, pixel_density):
-    im = [ymin + j * (ymax - ymin) / (int((ymax - ymin) * pixel_density) - 1) for j in range(int((ymax - ymin) * pixel_density))]
+    tmp = int((ymax - ymin) * pixel_density)
+    tmp2 = (ymax - ymin) / (tmp - 1)
+    im = [ymin + j * tmp2 for j in range(tmp)]
     complex_matrix = []
     for r in half:
         row = []

@@ -25,8 +25,6 @@ int main() {
     int     rangex = (int)((xmax - xmin) * pixel_dencity),
             rangey = (int)((ymax - ymin) * pixel_dencity) ;
     
-    printf("%d %d", rangex, rangey) ;
-    return 0;
     double  row[rangex],
             col[rangey] ;
     for (int i = 0; i < rangex; i++)
