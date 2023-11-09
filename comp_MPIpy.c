@@ -31,6 +31,7 @@ void mpi_gather_s(void* sendbuf, int count, int datatypeKey, void** recvbuf, int
 int  barrier(int comm);
 void matmul_double(double* MA, double* MB, int rowA, int shareB, int colC, double** LC);
 void mpi_get_processor_name(char ** name);
+int reduceChoiceInt(long*, int, long**, int, int, int);
 
 int communicator()
 {
@@ -114,6 +115,52 @@ int reduceSumDouble(double data, int master, int comm)
 	double finalP;
 	MPI_Reduce(&dataP, &finalP, 1, MPI_DOUBLE, MPI_SUM, master, comm);
 	return finalP;
+}
+
+int reduceChoiceInt(long *dataS,int size, long **dataR, int master, int comm, int choice)
+/*
+* data comes presized
+*/
+{	
+	MPI_Op op;
+	switch(choice)
+{
+	case 1:
+		op = MPI_MAX ;
+		break;
+	case 2:
+		op = MPI_MIN ;
+		break;
+	case 3:
+		op = MPI_SUM ;
+		break;
+	case 4:
+		op = MPI_PROD ;
+		break;
+	case 5:
+		op = MPI_LAND ;
+		break;
+	case 6:
+		op = MPI_LOR ;
+		break;
+	case 7:
+		op = MPI_BAND ;
+		break;
+	case 8:
+		op = MPI_BOR ;
+		break;
+	default:
+		MPI_Abort((MPI_Comm) comm, 1) ;
+		return -1;
+		
+}	
+	long *test = NULL ;
+	if (master == 0)
+		test = (long*) malloc (sizeof(long) * size) ;
+	MPI_Reduce(&dataS[0], &test[0], size, MPI_LONG, op, master, comm) ;
+	*dataR = test ;
+	return 0;
+
 }
 
 void mpi_Bcast_int(int* buffer, int count, int root, int comm)
