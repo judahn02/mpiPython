@@ -40,7 +40,9 @@ int main() {
     }
     for (int i = 0; i < rangex; i++) {
         for (int j = 0; j < rangey; j++) {
-            c[i][j] = row[i] + col[j] * I;  
+            c[i][j] = row[i] + col[j] * I; 
+            // if (i == 1000 && j == 1000)
+            //     printf("x: %.04f, y: %.04f\n", row[i], col[j]) ; 
         }
     }
 
@@ -119,6 +121,7 @@ void bool2D_png(double complex **test, int rangex, int rangey, png_bytepp *rows)
 {
     uint8_t white = 255;
     uint8_t black = 0; 
+    int testI = 0;
     for(int i = 0; i < rangex; i++)
     {
         for (int j = 0; j < rangey; j++)
@@ -129,12 +132,17 @@ void bool2D_png(double complex **test, int rangex, int rangey, png_bytepp *rows)
                 continue;
             }
             else if (cabs(test[i][j]) <= 2) 
+            {
                 (*rows)[i][j] = (png_byte) black ;
+                //testI++ ;
+            }
+                
             else
                 (*rows)[i][j] = (png_byte) white ;
             //(*rows)[i][j] = (png_byte) 255 ;
         }
     }
+    //printf("1 count: %d\n", testI);
 }
 
 void printGrid(bool **test, int rows, int cols) 

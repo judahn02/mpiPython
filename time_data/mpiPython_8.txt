@@ -248,3 +248,163 @@ real	1m59.929s
 user	15m35.139s
 sys	0m13.063s
  
+
+real	2m4.312s
+user	16m10.883s
+sys	0m11.923s
+ 
+
+real	1m59.411s
+user	15m33.029s
+sys	0m11.151s
+ 
+
+real	2m13.294s
+user	17m23.001s
+sys	0m11.364s
+ 
+
+real	1m35.528s
+user	12m21.232s
+sys	0m11.462s
+ 
+
+real	1m34.302s
+user	12m13.010s
+sys	0m10.966s
+ 
+
+real	0m9.293s
+user	1m7.373s
+sys	0m4.791s
+ 
+
+real	1m37.536s
+user	12m37.950s
+sys	0m11.020s
+ 
+
+real	1m35.518s
+user	12m22.438s
+sys	0m10.153s
+ 
+
+real	2m3.278s
+user	16m2.915s
+sys	0m11.496s
+ 
+
+real	1m35.701s
+user	12m23.059s
+sys	0m11.239s
+ 
+
+real	1m35.240s
+user	12m18.739s
+sys	0m11.543s
+ 
+
+real	1m35.596s
+user	12m21.858s
+sys	0m11.871s
+ 
+
+real	1m43.553s
+user	13m25.181s
+sys	0m11.191s
+ 
+
+real	1m33.538s
+user	12m6.946s
+sys	0m10.070s
+ 
+
+real	1m35.894s
+user	12m25.528s
+sys	0m10.909s
+ 
+Traceback (most recent call last):
+  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
+    MPI = MPIpy_v3.MPIpy()
+  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
+    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
+    func = self.__getitem__(name)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
+Traceback (most recent call last):
+  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
+    MPI = MPIpy_v3.MPIpy()
+  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
+    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
+    func = self.__getitem__(name)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
+Traceback (most recent call last):
+  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
+    MPI = MPIpy_v3.MPIpy()
+  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
+    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
+    func = self.__getitem__(name)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
+Traceback (most recent call last):
+  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
+    MPI = MPIpy_v3.MPIpy()
+  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
+    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
+    func = self.__getitem__(name)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
+Traceback (most recent call last):
+  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
+    MPI = MPIpy_v3.MPIpy()
+  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
+    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
+    func = self.__getitem__(name)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
+Traceback (most recent call last):
+  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
+    MPI = MPIpy_v3.MPIpy()
+  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
+    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
+    func = self.__getitem__(name)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
+Traceback (most recent call last):
+  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
+    MPI = MPIpy_v3.MPIpy()
+  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
+    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
+    func = self.__getitem__(name)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
+Traceback (most recent call last):
+  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
+    MPI = MPIpy_v3.MPIpy()
+  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
+    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
+    func = self.__getitem__(name)
+  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
+
+real	0m1.367s
+user	0m6.899s
+sys	0m1.944s
+ 

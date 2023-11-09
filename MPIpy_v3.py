@@ -7,6 +7,17 @@ class MPIpy:
     comm_func.restype = CT.c_int
     cworld = comm_func()
 
+    minidict = {
+        "MAX": 1,
+        "MIN":2,
+        "SUM":3,
+        "PROD":4,
+        "LAND":5, #!! be carefull with these.
+        "LOR":6,  #!! python datatype of int might mess things up.
+        "BAND":7, #!!
+        "BOR":8   #!!
+    }
+
     def __init__(self):
         """
         This is set up so that the user does not have to initialize,
@@ -83,6 +94,10 @@ class MPIpy:
         self.__get_processor_name = MPIpy.c_code.mpi_get_processor_name
         self.__get_processor_name.argtypes = [CT.c_void_p]
 
+        self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
+        self.__reduceChoiceInt.argtypes = [CT.c_void_p, CT.c_int, CT.c_void_p, CT.c_int, CT.c_int, CT.c_int]
+        self.__reduceChoiceInt.restype = CT.c_int
+
         self.__finalize = MPIpy.c_code.MPI_Finalize
 
         MPIpy.c_code.MPI_Init()
@@ -132,6 +147,26 @@ class MPIpy:
         test2 = (CT.c_double * length).from_address(self.temp_P.value)
         dataE.extend(test2[::])
         self.__super_free(CT.pointer(self.temp_P))
+
+    def reduceChoiceInt(self, data: int | list[int], root: int, choice:str, comm_m = cworld ) -> list[int]:
+        dataRe = []
+        try:
+            ch = MPIpy.minidict[choice]
+        except:
+            print("redice choice invalid")
+            exit(-1)
+        if type(data) == int:
+            data = list(data)
+        length = len(data)
+        parsedData = (CT.c_long * length)(*data)
+        self.__reduceChoiceInt(CT.pointer(parsedData),length, CT.pointer(self.temp_P), root, comm_m,  ch)
+        if root == self.rank:
+            data = (CT.c_long * length).from_address(self.temp_P.value)
+            dataRe.extend(data[::])
+            self.__super_free(CT.pointer(self.temp_P))
+            return dataRe
+        else:
+            return data
 
     def reduceSumInt(self, sum, master, comm_m = cworld) -> int:
         """All nodes include their parial sum for it to be added
@@ -302,6 +337,7 @@ class MPIpy:
     def barrier(self, comm_m = cworld) -> None:
             """MPI_Barrier"""        
             self.__barrier(comm_m)
+    
     def matmulC(self, LA: list, LB: list, rowA: int, shareB: int, colC: int, LC: list) -> None:
         """Uses a simple matrix algorithm but in c... so its allot faster.
             LA[rowA][shareB]

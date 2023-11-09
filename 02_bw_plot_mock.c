@@ -174,7 +174,7 @@ unsigned char * bool2D_png(double complex **master, int chunk_partial, int chunk
 {
     uint8_t white = 255 ;
     uint8_t black = 0 ;
-    unsigned char * master2 = (unsigned char *) malloc (sizeof(unsigned char*) * chunk_partial * chunkY) ;
+    unsigned char * master2 = (unsigned char *) malloc (sizeof(unsigned char) * chunk_partial * chunkY) ;
     if (master2 == NULL)
         MPI_Abort(MPI_COMM_WORLD, 2) ;
     for (int i = 0; i < chunk_partial; i++)
