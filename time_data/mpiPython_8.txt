@@ -323,88 +323,195 @@ real	1m35.894s
 user	12m25.528s
 sys	0m10.909s
  
-Traceback (most recent call last):
-  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
-    MPI = MPIpy_v3.MPIpy()
-  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
-    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
-    func = self.__getitem__(name)
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
-    func = self._FuncPtr((name_or_ordinal, self))
-AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
-Traceback (most recent call last):
-  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
-    MPI = MPIpy_v3.MPIpy()
-  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
-    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
-    func = self.__getitem__(name)
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
-    func = self._FuncPtr((name_or_ordinal, self))
-AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
-Traceback (most recent call last):
-  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
-    MPI = MPIpy_v3.MPIpy()
-  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
-    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
-    func = self.__getitem__(name)
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
-    func = self._FuncPtr((name_or_ordinal, self))
-AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
-Traceback (most recent call last):
-  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
-    MPI = MPIpy_v3.MPIpy()
-  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
-    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
-    func = self.__getitem__(name)
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
-    func = self._FuncPtr((name_or_ordinal, self))
-AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
-Traceback (most recent call last):
-  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
-    MPI = MPIpy_v3.MPIpy()
-  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
-    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
-    func = self.__getitem__(name)
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
-    func = self._FuncPtr((name_or_ordinal, self))
-AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
-Traceback (most recent call last):
-  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
-    MPI = MPIpy_v3.MPIpy()
-  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
-    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
-    func = self.__getitem__(name)
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
-    func = self._FuncPtr((name_or_ordinal, self))
-AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
-Traceback (most recent call last):
-  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
-    MPI = MPIpy_v3.MPIpy()
-  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
-    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
-    func = self.__getitem__(name)
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
-    func = self._FuncPtr((name_or_ordinal, self))
-AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
-Traceback (most recent call last):
-  File "/home/bloodyanger31/mpiPython/mpiPython/02_bw_plot_mock.py", line 3, in <module>
-    MPI = MPIpy_v3.MPIpy()
-  File "/home/bloodyanger31/mpiPython/mpiPython/MPIpy_v3.py", line 97, in __init__
-    self.__reduceChoiceInt = MPIpy.c_code.reduceChoiceInt
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 387, in __getattr__
-    func = self.__getitem__(name)
-  File "/usr/lib/python3.10/ctypes/__init__.py", line 392, in __getitem__
-    func = self._FuncPtr((name_or_ordinal, self))
-AttributeError: ./comp_MPIpy.so: undefined symbol: reduceChoiceInt
 
-real	0m1.367s
-user	0m6.899s
-sys	0m1.944s
+
+
+real	2m16.856s
+user	17m51.238s
+sys	0m11.970s
+ 
+
+real	2m11.427s
+user	17m8.592s
+sys	0m11.488s
+ 
+
+real	2m25.336s
+user	18m59.276s
+sys	0m11.551s
+ 
+
+real	1m58.703s
+user	15m28.483s
+sys	0m11.008s
+ 
+
+real	1m57.195s
+user	15m14.821s
+sys	0m12.131s
+ 
+
+real	1m36.277s
+user	12m28.488s
+sys	0m10.332s
+ 
+
+real	2m0.082s
+user	15m38.889s
+sys	0m10.706s
+ 
+
+real	1m45.774s
+user	13m44.353s
+sys	0m11.213s
+ 
+
+real	1m59.760s
+user	15m36.143s
+sys	0m11.256s
+ 
+
+real	2m9.402s
+user	16m52.210s
+sys	0m11.677s
+ 
+
+real	1m34.438s
+user	12m12.125s
+sys	0m11.397s
+ 
+
+real	2m10.629s
+user	17m2.502s
+sys	0m11.211s
+ 
+
+real	2m23.132s
+user	18m41.210s
+sys	0m12.543s
+ 
+
+real	2m12.976s
+user	17m20.454s
+sys	0m11.936s
+ 
+
+real	2m7.535s
+user	16m38.000s
+sys	0m11.755s
+ 
+
+real	1m34.390s
+user	12m12.415s
+sys	0m12.112s
+ 
+
+real	1m36.125s
+user	12m28.269s
+sys	0m10.372s
+ 
+
+real	1m34.848s
+user	12m16.706s
+sys	0m11.090s
+ 
+
+real	1m33.683s
+user	12m7.249s
+sys	0m10.385s
+ 
+
+real	1m44.797s
+user	13m35.035s
+sys	0m11.201s
+ 
+
+real	1m34.461s
+user	12m13.954s
+sys	0m10.689s
+ 
+
+real	1m33.384s
+user	12m6.288s
+sys	0m10.428s
+ 
+
+real	1m34.000s
+user	12m9.540s
+sys	0m10.979s
+ 
+
+real	1m36.398s
+user	12m29.182s
+sys	0m10.814s
+ 
+
+real	1m34.015s
+user	12m10.773s
+sys	0m10.798s
+ 
+
+real	2m12.444s
+user	17m17.332s
+sys	0m10.962s
+ 
+
+real	1m34.518s
+user	12m14.084s
+sys	0m10.727s
+ 
+
+real	2m10.010s
+user	16m57.242s
+sys	0m12.096s
+ 
+
+real	1m33.644s
+user	12m6.478s
+sys	0m10.415s
+ 
+
+real	1m34.917s
+user	12m16.827s
+sys	0m11.118s
+ 
+
+real	1m55.610s
+user	15m1.996s
+sys	0m11.862s
+ 
+
+real	2m23.972s
+user	18m46.900s
+sys	0m11.227s
+ 
+
+real	1m58.200s
+user	15m24.256s
+sys	0m11.140s
+ 
+
+real	1m33.439s
+user	12m7.127s
+sys	0m9.807s
+ 
+
+real	2m18.233s
+user	18m2.976s
+sys	0m12.809s
+ 
+
+real	1m35.787s
+user	12m23.453s
+sys	0m11.191s
+ 
+
+real	1m33.812s
+user	12m9.102s
+sys	0m10.244s
+ 
+
+real	1m39.991s
+user	12m57.810s
+sys	0m11.833s
  

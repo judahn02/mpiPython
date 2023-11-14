@@ -313,3 +313,208 @@ real	3m7.824s
 user	3m4.551s
 sys	0m3.244s
  
+
+real	3m7.701s
+user	3m3.887s
+sys	0m3.784s
+ 
+
+real	3m7.211s
+user	3m3.979s
+sys	0m3.216s
+ 
+
+real	3m8.897s
+user	3m4.892s
+sys	0m3.964s
+ 
+
+real	3m5.583s
+user	3m3.821s
+sys	0m1.736s
+ 
+
+real	3m7.336s
+user	3m5.591s
+sys	0m1.728s
+ 
+
+real	3m10.459s
+user	3m6.681s
+sys	0m3.760s
+ 
+
+real	3m4.486s
+user	3m3.655s
+sys	0m0.784s
+ 
+
+real	3m7.334s
+user	3m5.048s
+sys	0m2.260s
+ 
+
+real	3m7.459s
+user	3m5.284s
+sys	0m2.136s
+ 
+
+real	3m5.932s
+user	3m3.963s
+sys	0m1.956s
+ 
+
+real	3m8.587s
+user	3m6.141s
+sys	0m2.428s
+ 
+
+real	3m7.930s
+user	3m4.176s
+sys	0m3.728s
+ 
+
+real	3m7.782s
+user	3m4.399s
+sys	0m3.360s
+ 
+
+real	3m9.126s
+user	3m4.385s
+sys	0m4.614s
+ 
+
+real	3m8.399s
+user	3m4.592s
+sys	0m3.784s
+ 
+
+real	3m8.941s
+user	3m4.582s
+sys	0m4.283s
+ 
+
+real	3m7.916s
+user	3m4.502s
+sys	0m3.384s
+ 
+
+real	3m10.959s
+user	3m7.140s
+sys	0m3.796s
+ 
+
+real	3m8.439s
+user	3m4.711s
+sys	0m3.704s
+ 
+
+real	3m5.894s
+user	3m3.814s
+sys	0m2.016s
+ 
+
+real	3m7.091s
+user	3m3.984s
+sys	0m3.068s
+ 
+
+real	3m7.998s
+user	3m4.210s
+sys	0m3.764s
+ 
+
+real	3m11.083s
+user	3m7.220s
+sys	0m3.840s
+ 
+
+real	3m6.093s
+user	3m3.883s
+sys	0m2.196s
+ 
+
+real	3m5.859s
+user	3m3.686s
+sys	0m2.136s
+ 
+
+real	3m11.161s
+user	3m7.285s
+sys	0m3.856s
+ 
+
+real	3m10.754s
+user	3m6.927s
+sys	0m3.804s
+ 
+
+real	3m5.834s
+user	3m3.802s
+sys	0m2.016s
+ 
+
+real	3m7.927s
+user	3m4.086s
+sys	0m3.812s
+ 
+
+real	3m6.492s
+user	3m3.857s
+sys	0m2.616s
+ 
+
+real	3m7.949s
+user	3m4.076s
+sys	0m3.848s
+ 
+
+real	3m6.908s
+user	3m3.982s
+sys	0m2.908s
+ 
+
+real	3m7.851s
+user	3m6.016s
+sys	0m1.812s
+ 
+
+real	3m6.844s
+user	3m4.201s
+sys	0m2.604s
+ 
+
+real	3m8.311s
+user	3m4.915s
+sys	0m3.372s
+ 
+
+real	3m8.552s
+user	3m5.370s
+sys	0m3.156s
+ 
+
+real	3m5.986s
+user	3m3.735s
+sys	0m2.224s
+ 
+
+real	3m7.453s
+user	3m4.420s
+sys	0m3.012s
+ 
+
+real	3m8.476s
+user	3m4.657s
+sys	0m3.788s
+ 
+
+real	3m4.830s
+user	3m3.599s
+sys	0m1.216s
+ 
+
+real	3m6.787s
+user	3m3.782s
+sys	0m2.992s
+ 

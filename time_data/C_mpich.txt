@@ -48,3 +48,203 @@ real	0m29.790s
 user	3m52.996s
 sys	0m2.656s
  
+
+real	0m29.816s
+user	3m53.354s
+sys	0m2.535s
+ 
+
+real	0m42.513s
+user	5m33.738s
+sys	0m3.656s
+ 
+
+real	0m43.365s
+user	5m41.396s
+sys	0m2.968s
+ 
+
+real	0m31.605s
+user	4m7.683s
+sys	0m2.529s
+ 
+
+real	0m29.772s
+user	3m52.581s
+sys	0m2.971s
+ 
+
+real	0m37.773s
+user	4m56.917s
+sys	0m2.645s
+ 
+
+real	0m38.609s
+user	5m3.927s
+sys	0m2.383s
+ 
+
+real	0m42.006s
+user	5m30.680s
+sys	0m2.807s
+ 
+
+real	0m46.061s
+user	6m2.855s
+sys	0m2.979s
+ 
+
+real	0m44.725s
+user	5m52.454s
+sys	0m2.824s
+ 
+
+real	0m29.738s
+user	3m52.943s
+sys	0m2.479s
+ 
+
+real	0m32.500s
+user	4m14.488s
+sys	0m2.982s
+ 
+
+real	0m31.169s
+user	4m3.374s
+sys	0m3.307s
+ 
+
+real	0m34.899s
+user	4m33.650s
+sys	0m2.931s
+ 
+
+real	0m34.381s
+user	4m29.232s
+sys	0m3.169s
+ 
+
+real	0m40.787s
+user	5m20.443s
+sys	0m3.272s
+ 
+
+real	0m29.706s
+user	3m52.358s
+sys	0m2.763s
+ 
+
+real	0m39.260s
+user	5m8.573s
+sys	0m2.988s
+ 
+
+real	0m45.017s
+user	5m54.796s
+sys	0m2.651s
+ 
+
+real	0m29.675s
+user	3m52.729s
+sys	0m2.257s
+ 
+
+real	0m46.700s
+user	6m8.327s
+sys	0m2.717s
+ 
+
+real	0m30.086s
+user	3m55.237s
+sys	0m2.844s
+ 
+
+real	0m29.824s
+user	3m53.217s
+sys	0m2.685s
+ 
+
+real	0m29.727s
+user	3m52.673s
+sys	0m2.465s
+ 
+
+real	0m29.961s
+user	3m54.411s
+sys	0m2.653s
+ 
+
+real	0m30.076s
+user	3m55.356s
+sys	0m2.723s
+ 
+
+real	0m29.701s
+user	3m52.264s
+sys	0m2.817s
+ 
+
+real	0m43.008s
+user	5m38.535s
+sys	0m2.989s
+ 
+
+real	0m29.721s
+user	3m52.335s
+sys	0m2.857s
+ 
+
+real	0m30.244s
+user	3m56.920s
+sys	0m2.347s
+ 
+
+real	0m29.806s
+user	3m53.048s
+sys	0m2.810s
+ 
+
+real	0m40.777s
+user	5m20.702s
+sys	0m2.973s
+ 
+
+real	0m30.163s
+user	3m55.973s
+sys	0m2.624s
+ 
+
+real	0m30.159s
+user	3m56.156s
+sys	0m2.581s
+ 
+
+real	0m29.793s
+user	3m53.230s
+sys	0m2.504s
+ 
+
+real	0m29.871s
+user	3m53.872s
+sys	0m2.527s
+ 
+
+real	0m29.781s
+user	3m52.817s
+sys	0m2.833s
+ 
+
+real	0m30.138s
+user	3m55.506s
+sys	0m3.096s
+ 
+
+real	0m32.111s
+user	4m11.794s
+sys	0m2.423s
+ 
+
+real	0m29.704s
+user	3m52.758s
+sys	0m2.321s
+ 
