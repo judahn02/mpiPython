@@ -12,7 +12,7 @@ This guide outlines the steps to install and use mpiPython on Debian-based syste
 ### Installation Steps
 1. **Install required packages:**
    ```bash
-   sudo apt install build-essential libmpich-dev python3-pip
+   sudo apt install build-essential
    ```
 2. **Install mpiPython:**
    ```bash
