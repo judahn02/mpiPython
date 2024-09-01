@@ -1,0 +1,8 @@
+.venv/
+mpiPython.egg-info/
+test/libcode.so
+mpiPython/mpiPython/__pycache__/
+mpiPython/__pycache__/
+dist/
+build/
+test/libcode.so

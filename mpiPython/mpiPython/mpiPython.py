@@ -264,7 +264,7 @@ class MPIpy(CWrap):
 
     def barrier(self, comm_m = CWrap.cworld) -> None:
             """MPI_Barrier"""        
-            self.__barrier(comm_m)
+            self._CWrap__barrier(comm_m)
     
     def matmulC(self, LA: list, LB: list, rowA: int, shareB: int, colC: int, LC: list) -> None:
         """Uses a simple matrix algorithm but in c... so its allot faster.

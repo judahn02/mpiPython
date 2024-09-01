@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mpiPython"
-version = "1.0.4"
+version = "1.0.5"
 description = "An MPI wrapper for Python"
 readme = "README.md"
 authors = [
@@ -21,5 +21,5 @@ keywords = ["mpi"]
 dependencies = [
     'setuptools'
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 

@@ -7,7 +7,7 @@ This guide outlines the steps to install and use mpiPython on Debian-based syste
 * **Debian-based system** (e.g., Ubuntu, Debian)
 * **`build-essential`** package installed (provides necessary compilers and tools)
 * **'mpich'** the program is made to work with this, you can either have it installed by package manager or custom compiled with '--enable-shared'
-* **Python 3.12**
+* **Python >=3.10**
 
 ### Installation Steps
 1. **Install required packages:**
