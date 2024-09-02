@@ -21,6 +21,8 @@ int  mpi_comm_rank(int comm);
 int  mpi_comm_size(int comm);
 void mpi_send_int(int data, int count, int dest, int tag, int comm);
 int  mpi_recv_int(int count, int source, int tag, int comm);
+void mpi_send_double(double data, int count, int dest, int tag, int comm) ;
+double mpi_recv_double(int source, int tag, int comm) ;
 void mpi_send_int_array(long* data, int length, int dest, int tag, int comm);
 int  mpi_recv_int_array(long ** test, int source, int tag, int comm);
 void mpi_send_double_array(double* data, int length, int dest, int tag, int comm);
@@ -66,6 +68,18 @@ int mpi_recv_int(int count, int source, int tag, int comm)
 {
     int value;
     MPI_Recv(&value, count, MPI_INT, source, tag, comm, MPI_STATUS_IGNORE);
+    return value;
+}
+
+void mpi_send_double(double data, int count, int dest, int tag, int comm)
+{
+	MPI_Send(&data, count, MPI_DOUBLE, dest, tag, comm);
+}
+
+double mpi_recv_double(int source, int tag, int comm)
+{
+    double value;
+    MPI_Recv(&value, 1, MPI_DOUBLE, source, tag, comm, MPI_STATUS_IGNORE);
     return value;
 }
 

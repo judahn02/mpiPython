@@ -40,9 +40,9 @@ class MPIpy(CWrap):
         """Size of working pool"""
         return self.sizef()
 
-    def send_int(self, data: int, dest: int, tag: int, comm = CWrap.cworld) -> None:
+    def send_int(self, data: int, dest: int, tag: int, comm_m = CWrap.cworld) -> None:
         """Sends data over MPI_Send, default only needs 3 arguments."""
-        return self._CWrap__int_send(data, 1, dest, tag, comm)
+        return self._CWrap__int_send(data, 1, dest, tag, comm_m)
 
     def recv_int(self, source: int, tag: int, comm_m = CWrap.cworld) -> int:
         """Return data sent over MPI_Send, default only needs 2 arguments"""
