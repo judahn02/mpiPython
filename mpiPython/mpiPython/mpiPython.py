@@ -132,7 +132,7 @@ class MPIpy(CWrap):
                 data.append(temp2[i])
     
     def Bcast_double(self, data, sender: int, comm_m = CWrap.cworld) -> None:
-        """Use MPI Bcast send over an int or a list of int's to all.
+        """Use MPI Bcast send over an float or a list of float's to all.
             !!non-senders must always pass in an empty list into data.
             is a single float is sent over, a list with 2 values, 0.0 being the seccond will return.
         """
@@ -142,7 +142,7 @@ class MPIpy(CWrap):
         temp = temp_ar()
         if self.rank == sender:
             temp[0] = len(data)
-            self.__Bcast_int(CT.pointer(temp), 1, sender, comm_m)
+            self._CWrap__Bcast_int(CT.pointer(temp), 1, sender, comm_m)
             temp_ar = temp[0] * CT.c_double
             temp = temp_ar()
             for i in range(len(data)):
@@ -249,6 +249,10 @@ class MPIpy(CWrap):
         if self.rank == sender:
             if sType == 1: # int
                 tmp2 = (CT.c_int * (lengthS * self.size))
+                tmp2 = tmp2.from_address(self.temp_P.value)
+                dataList.extend(tmp2[::]) 
+            if sType == 2: # float
+                tmp2 = (CT.c_double * (lengthS * self.size))
                 tmp2 = tmp2.from_address(self.temp_P.value)
                 dataList.extend(tmp2[::]) 
         
