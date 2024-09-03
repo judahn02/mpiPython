@@ -40,6 +40,8 @@ void matmul_double(double* MA, double* MB, int rowA, int shareB, int colC, doubl
 void mpi_get_processor_name(char ** name);
 int reduceChoiceInt(long*, int, long**, int, int, int);
 
+
+
 int communicator()
 {
     return (int) MPI_COMM_WORLD;
@@ -274,5 +276,3 @@ void mpi_get_processor_name(char ** name)
     MPI_Get_processor_name(namev, &len); //added the & - Judah
 	*name = namev ;
 }
-
-

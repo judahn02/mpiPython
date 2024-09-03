@@ -31,11 +31,16 @@ class betaMPIpy(MPIpy):
                                     # comm     error code
         self.__MPI_Abort.argtypes = [CT.c_int, CT.c_int]
         self.__MPI_Abort.restype = CT.c_int
+
+        self.__MPI_Allgather = MPIpy.c_code.mpi_allgather
+        self.__MPI_Allgather.argtypes = [CT.c_void_p, CT.c_int, CT.c_int, CT.c_int]
+        self.__MPI_Allgather.restype = CT.c_void_p
+
+        
+
         print("!!! You are using the beta MPIpy class, not meant for production. !!!")
     
     def MPI_Send(self, value, dest, tag, comm_m = MPIpy.cworld ) -> None:
-        # print("This is a command in testing, not ready for production")
-        # This needs to support int, float, 
         """
             Here is what is should support:
             Send_beta(3, 1, 1) ;
@@ -45,10 +50,6 @@ class betaMPIpy(MPIpy):
             Send_beta(4j+2, 1, 1) ;
             Send_beta([4j+1, 7.3j+99, 1j+58.3], 1, 1)
         """
-        # # first convert the pure numbers to just int
-        # if type(value) is not list:
-        #     value = list(value)
-
         typ = type(value)
         if typ == int:
             self.send_int(1,dest,tag)
@@ -91,8 +92,6 @@ class betaMPIpy(MPIpy):
             self.send_int(5,dest,tag)
             return None
 
-
-        
     def MPI_Recv(self, source, tag, comm_m = MPIpy.cworld, MPI_STATUS:MPI_Send = None) -> list[int,float,list[int],list[float]]:
         typ = self.recv_int(source,tag)
         if typ == 1:
@@ -115,7 +114,41 @@ class betaMPIpy(MPIpy):
             print("Unnown send call issue sent over, semantic error")
             self.__MPI_Abort(comm_m, 17)
 
+    
+    def MPI_Allgather(self, source: list[int,float], comm = MPIpy.cworld) -> list[int,float]:
+        """
+            This needs to be checked for memory leaks!
+        """
+        lengthS = len(source)
+        sType = 0
+        if type(source[0]) == int:
+            sType = 1
+            temp_ar = lengthS * CT.c_int
+            temp = temp_ar()
+            for i in range(lengthS):
+                temp[i] = source[i]
 
+        elif type(source[0]) == float:
+            sType = 2
+            temp_ar = lengthS * CT.c_double
+            temp = temp_ar()
+            for i in range(lengthS):
+                temp[i] = source[i]
+        
+        if sType == 0:
+            print("Error")
+            self.__MPI_Abort()
+        
+        self.temp_P = self.__MPI_Allgather(CT.pointer(temp),lengthS,sType,comm)
+        if sType == 1: # int
+            tmp2 = (CT.c_int * (lengthS * self.size))
+            tmp2 = tmp2.from_address(self.temp_P)
+            
+        elif sType == 2: # float
+            tmp2 = (CT.c_double * (lengthS * self.size))
+            tmp2 = tmp2.from_address(self.temp_P)
+        # self._CWrap__super_free(self.temp_P)
+        return tmp2[::]
 
 
 
