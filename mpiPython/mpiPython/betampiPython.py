@@ -31,9 +31,10 @@ class betaMPIpy(MPIpy):
                                     # comm     error code
         self.__MPI_Abort.argtypes = [CT.c_int, CT.c_int]
         self.__MPI_Abort.restype = CT.c_int
+        print("!!! You are using the beta MPIpy class, not meant for production. !!!")
     
     def MPI_Send(self, value, dest, tag, comm_m = MPIpy.cworld ) -> None:
-        print("This is a command in testing, not ready for production")
+        # print("This is a command in testing, not ready for production")
         # This needs to support int, float, 
         """
             Here is what is should support:
