@@ -147,13 +147,13 @@ class MPIpy(CWrap):
             temp = temp_ar()
             for i in range(len(data)):
                 temp[i] = data[i]
-            self.__Bcast_double(CT.pointer(temp), len(data), sender, comm_m)
+            self._CWrap__Bcast_double(CT.pointer(temp), len(data), sender, comm_m)
         else:
-            self.__Bcast_int(CT.pointer(temp), 1, sender, comm_m)
+            self._CWrap__Bcast_int(CT.pointer(temp), 1, sender, comm_m)
             length = temp[0]
             temp_ar2 = length * CT.c_double
             temp2 = temp_ar2()
-            self.__Bcast_double(CT.pointer(temp2), length, sender, comm_m)
+            self._CWrap__Bcast_double(CT.pointer(temp2), length, sender, comm_m)
             for i in range(length):
                 data.append(temp2[i])
 
