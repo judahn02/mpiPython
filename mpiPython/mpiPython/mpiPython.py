@@ -224,7 +224,7 @@ class MPIpy(CWrap):
             for i in range(lengthS):
                 dataList.append(temp.contents[i])
 
-    def gather(self, dataList: list, sender, comm_m = CWrap.cworld) -> None:
+    def gather(self, dataList: list, sender, comm_m = CWrap.cworld) -> int | None:
         """MPI_Gather for MPIpy."""
 
         lengthS = len(dataList)
@@ -243,20 +243,22 @@ class MPIpy(CWrap):
             for i in range(lengthS):
                 temp[i] = dataList[i]
 
-        self.__gather(CT.pointer(temp), lengthS, sType, CT.pointer(self.temp_P), sender, comm_m)
+        self._CWrap__gather(CT.pointer(temp), lengthS, sType, CT.pointer(self.temp_P), sender, comm_m)
 
         dataList.clear()
         if self.rank == sender:
             if sType == 1: # int
                 tmp2 = (CT.c_int * (lengthS * self.size))
                 tmp2 = tmp2.from_address(self.temp_P.value)
-                dataList.extend(tmp2[::]) 
+                # dataList.extend(tmp2[::]) 
             if sType == 2: # float
                 tmp2 = (CT.c_double * (lengthS * self.size))
                 tmp2 = tmp2.from_address(self.temp_P.value)
-                dataList.extend(tmp2[::]) 
+                # dataList.extend(tmp2[::]) 
+            self._CWrap__super_free(CT.pointer(self.temp_P))
+            return tmp2[::]
         
-        self.__super_free(CT.pointer(self.temp_P))
+        self._CWrap__super_free(CT.pointer(self.temp_P))
 
     def Get_processor_name(self, comm = CWrap.cworld) -> str:
         """Get the name of the processor."""
