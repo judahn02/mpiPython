@@ -99,12 +99,12 @@ class MPIpy(CWrap):
     def reduceSumInt(self, sum, master, comm_m = CWrap.cworld) -> int:
         """All nodes include their parial sum for it to be added
             all together then returned to everyone what the total sum is."""
-        return self.__reduce_Sum_int(sum, master, comm_m)
+        return self._CWrap__reduce_Sum_int(sum, master, comm_m)
 
     def reduceSumDouble(self, sum, master, comm_m=CWrap.cworld) -> float:
         """All nodes include their partial sum for it to be added
             all together when returned to everyone what the total sum is."""
-        return self.__reduce_Sum_double(sum, master, comm_m)
+        return self._CWrap__reduce_Sum_double(sum, master, comm_m)
     
     def Bcast_int(self, data, sender: int, comm_m = CWrap.cworld) -> None:
         """Use MPI Bcast send over an int or a list of int's to all.
@@ -220,7 +220,7 @@ class MPIpy(CWrap):
                 temp_ar = lengthS * CT.c_double
             temP = temp_ar()
             temp = CT.pointer(temP)
-            self.__scatter(scrapP, lengthS, sType, temp, lengthS, sender, comm_m)
+            self._CWrap__scatter(scrapP, lengthS, sType, temp, lengthS, sender, comm_m)
             for i in range(lengthS):
                 dataList.append(temp.contents[i])
 
@@ -257,15 +257,15 @@ class MPIpy(CWrap):
                 # dataList.extend(tmp2[::]) 
             self._CWrap__super_free(CT.pointer(self.temp_P))
             return tmp2[::]
-        
-        self._CWrap__super_free(CT.pointer(self.temp_P))
+        else:
+            self._CWrap__super_free(CT.pointer(self.temp_P))
 
     def Get_processor_name(self, comm = CWrap.cworld) -> str:
         """Get the name of the processor."""
         # name = CT.create_string_buffer(256)
-        self.__get_processor_name(CT.pointer(self.temp_P))
+        self._CWrap__get_processor_name(CT.pointer(self.temp_P))
         test2 = (CT.c_char * 256).from_address(self.temp_P.value) # switched to c_char
-        self.__super_free(CT.pointer(self.temp_P))
+        self._CWrap__super_free(CT.pointer(self.temp_P))
         return test2.value  # changed to test2.value
 
     def barrier(self, comm_m = CWrap.cworld) -> None:
@@ -291,7 +291,7 @@ class MPIpy(CWrap):
             )
         test2 = (CT.c_double * lengthC).from_address(self.temp_P.value)
         LC.extend(test2[::])
-        self.__super_free(CT.pointer(self.temp_P))
+        self._CWrap__super_free(CT.pointer(self.temp_P))
 
 
 

@@ -8,6 +8,7 @@ Organization: Parallel Solvit LLC and MSUM CSIS Department
 """
 
 import os, atexit, subprocess, sys, ctypes as CT
+import pickle
 
 from .mpiPython import (
     MPIpy,
@@ -35,6 +36,10 @@ class betaMPIpy(MPIpy):
         self.__MPI_Allgather = MPIpy.c_code.mpi_allgather
         self.__MPI_Allgather.argtypes = [CT.c_void_p, CT.c_int, CT.c_int, CT.c_int]
         self.__MPI_Allgather.restype = CT.c_void_p
+
+        self.__MPI_pSend = MPIpy.c_code.mpi_pSend
+        self.__MPI_pSend.argtypes = [CT.c_void_p, CT.c_int, CT.c_int, CT.c_int, CT.c_int]
+
 
         
 
@@ -92,7 +97,7 @@ class betaMPIpy(MPIpy):
             self.send_int(5,dest,tag)
             return None
 
-    def MPI_Recv(self, source, tag, comm_m = MPIpy.cworld, MPI_STATUS:MPI_Send = None) -> list[int,float,list[int],list[float]]:
+    def MPI_Recv(self, source, tag, comm_m = MPIpy.cworld, MPI_STATUS:MPI_Status = None) -> list[int,float,list[int],list[float]]:
         typ = self.recv_int(source,tag)
         if typ == 1:
             return self._CWrap__int_recv(1, source, tag, comm_m)
@@ -114,7 +119,16 @@ class betaMPIpy(MPIpy):
             print("Unnown send call issue sent over, semantic error")
             self.__MPI_Abort(comm_m, 17)
 
+    def MPI_pSend(self, value, dest, tag, comm_m = MPIpy.cworld ) -> None:
+        value_pickled = pickle.dumps(value)
+        length = len(value_pickled)
+        parsedData = (CT.c_byte * length)(*value_pickled)
+        self.__MPI_pSend(parsedData, length, dest, tag, comm_m)
     
+    def MPI_pRecv(self, source, tag, comm_m = MPIpy.cworld, MPI_STATUS:MPI_Status = None): # Can return anything.
+        pass
+
+
     def MPI_Allgather(self, source: list[int,float], comm = MPIpy.cworld) -> list[int,float]:
         """
             This needs to be checked for memory leaks!
