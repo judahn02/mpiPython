@@ -18,7 +18,7 @@ from .mpiPython import (
 class betaMPIpy(MPIpy):
 
     
-    def __init__(self):
+    def __init__(self, warningHide:bool = False):
         super().__init__()
 
         self.__double_send = MPIpy.c_code.mpi_send_double
@@ -43,8 +43,8 @@ class betaMPIpy(MPIpy):
 
 
         
-
-        print("!!! You are using the beta MPIpy class, not meant for production. !!!")
+        if not warningHide:
+            print("!!! You are using the beta MPIpy class, not meant for production. !!!")
     
     def MPI_Send(self, value, dest, tag, comm_m = MPIpy.cworld ) -> None:
         """

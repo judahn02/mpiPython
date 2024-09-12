@@ -87,11 +87,11 @@ class MPIpy(CWrap):
             data = list(data)
         length = len(data)
         parsedData = (CT.c_long * length)(*data)
-        self.__reduceChoiceInt(CT.pointer(parsedData),length, CT.pointer(self.temp_P), root, comm_m,  ch)
+        self._CWrap__reduceChoiceInt(CT.pointer(parsedData),length, CT.pointer(self.temp_P), root, comm_m,  ch)
         if root == self.rank:
             data = (CT.c_long * length).from_address(self.temp_P.value)
             dataRe.extend(data[::])
-            self.__super_free(CT.pointer(self.temp_P))
+            self._CWrap__super_free(CT.pointer(self.temp_P))
             return dataRe
         else:
             return data
