@@ -37,8 +37,9 @@ class betaMPIpy(MPIpy):
         self.__MPI_Allgather.argtypes = [CT.c_void_p, CT.c_int, CT.c_int, CT.c_int]
         self.__MPI_Allgather.restype = CT.c_void_p
 
-        self.__MPI_pSend = MPIpy.c_code.mpi_pSend
-        self.__MPI_pSend.argtypes = [CT.c_void_p, CT.c_int, CT.c_int, CT.c_int, CT.c_int]
+        # This is not actually implemented yet, will be soon
+        # self.__MPI_pSend = MPIpy.c_code.mpi_pSend
+        # self.__MPI_pSend.argtypes = [CT.c_void_p, CT.c_int, CT.c_int, CT.c_int, CT.c_int]
 
 
         
