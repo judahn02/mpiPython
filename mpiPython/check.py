@@ -43,7 +43,7 @@ def load_c_libcode():
     else:
         mpich_value=""
     try:
-        subprocess.run([mpich_value+"mpicc", cache, "-shared", "-fPIC", "-o",callingDirectory+"/libcode.so"])
+        subprocess.run([mpich_value+"mpicc.mpich", cache, "-shared", "-fPIC", "-o",callingDirectory+"/libcode.so"])
         print("sucess")
     except PermissionError as e:
         print("Does not have permission to access "+mpich_value+", please use sudo or root call")
